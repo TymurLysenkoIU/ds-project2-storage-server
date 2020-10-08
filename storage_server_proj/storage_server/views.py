@@ -17,7 +17,6 @@ class SpaceView(APIView):
   def get(self, request: Request) -> Response:
     try:
       return Response(data={
-        # "bytes_free": shutil.disk_usage(".").free,
         "bytes_available": shutil.disk_usage(STORAGE_BASE_PATH).free,
       })
     except:

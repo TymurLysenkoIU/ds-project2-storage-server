@@ -1,3 +1,23 @@
+# API reference
+
+## `GET /ping`
+
+Just returns **200**, so that one who sends requests knows that the server is up and running.
+
+It is intended to be used in polling, so that a DFS name server knows, that a storage server is available.
+
+## `GET /info/space`
+
+Returns how many bytes are available at in storage directory.
+
+The response is a _json_ in the following format:
+
+```json
+{
+  "bytes_available": 0
+}
+```
+
 # Deployment
 
 ## Configuration
