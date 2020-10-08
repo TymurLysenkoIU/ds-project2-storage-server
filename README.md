@@ -7,8 +7,8 @@ There is a python configuration file for the application located at `storage_ser
 ### Environment variables
 
 - `DJANGO_SECRET_KEY` - secret key to be used for the application
-- `STORAGE_BASE_PATH` - path in which files are stored to be checked for the free space
-- `NAME_SERVER_ADDRESS` - address of the main server to which the storage server will connect
+- `STORAGE_BASE_PATH` - path in which files are stored to be checked for the free space (default is `/home/vsftpd/`)
+- `NAME_SERVER_ADDRESS` - address of the main server to which the storage server will connect (default is `http://name-server`)
 
 ## Docker
 
