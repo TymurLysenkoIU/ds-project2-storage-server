@@ -49,7 +49,7 @@ The API will be available to port **80**, so this port of the container has to b
 Sample command to run:
 
 ```sh
-docker run -p 8000:80 -p 20:20 -p 21:21 -p 21100-21110:21100-21110 -e "PASV_MIN_PORT=2100" -e "PASV_MAX_PORT=21110" --name storage-server sitiritis/ds-dfs-storage-server
+docker run -p 8000:80 -p 20:20 -p 21:21 -e "PASV_ENABLE=NO"--name storage-server sitiritis/ds-dfs-storage-server
 ```
 
 
