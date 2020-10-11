@@ -20,6 +20,11 @@ RUN chmod +x /usr/sbin/storage-server-entrypoint.sh
 COPY ./requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
 
+# Declare environment variables for the application
+ENV DJANGO_SECRET_KEY="set_your_secret"
+ENV STORAGE_BASE_PATH="/home/vsftpd/"
+ENV NAME_SERVER_ADDRESS="http://name-server"
+
 # Copy the application to the image
 COPY ./storage_server_proj /storage-server/storage_server_proj
 COPY ./docker/settings.py /storage-server/storage_server_proj/
@@ -27,10 +32,5 @@ COPY ./docker/settings.py /storage-server/storage_server_proj/
 COPY ./manage.py /storage-server/
 RUN cd /storage-server/ && python3 manage.py collectstatic --noinput
 # nginx needs to be configured to serve static files, but is not needed for now
-
-# Declare environment variables for the application
-ENV DJANGO_SECRET_KEY="set_your_secret"
-ENV STORAGE_BASE_PATH="/home/vsftpd/"
-ENV NAME_SERVER_ADDRESS="http://name-server"
 
 ENTRYPOINT ["/usr/sbin/storage-server-entrypoint.sh"]

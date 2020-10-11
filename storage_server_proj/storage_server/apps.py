@@ -11,14 +11,14 @@ class StorageServerConfig(AppConfig):
   name = 'storage_server_proj.storage_server'
 
   def ready(self):
-    try:
-      # TODO: when the endpoint will be implemented get back to this place
-      # r.get(
-      #   url=f"{NAME_SERVER_ADDRESS}/connect",
-      #   params={},
-      # )
-      pass
-    except:
-      print(f"Unable to connect to the name server: {NAME_SERVER_ADDRESS}")
-      print("Exiting...")
-      sys.exit(1)
+    if ('collectstatic' not in sys.argv):
+      try:
+        pass
+        r.get(
+          url=f"{NAME_SERVER_ADDRESS}/connect",
+          # params={},
+        )
+      except:
+        print(f"Unable to connect to the name server: {NAME_SERVER_ADDRESS}")
+        print("Exiting...")
+        sys.exit(1)
