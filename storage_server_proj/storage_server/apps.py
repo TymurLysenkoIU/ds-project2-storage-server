@@ -18,7 +18,8 @@ class StorageServerConfig(AppConfig):
           url=f"{NAME_SERVER_ADDRESS}/connect",
           # params={},
         )
-      except:
+      except Exception as e:
         print(f"Unable to connect to the name server: {NAME_SERVER_ADDRESS}")
+        print(f"Error: {e}")
         print("Exiting...")
         sys.exit(1)
