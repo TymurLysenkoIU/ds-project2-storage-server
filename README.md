@@ -24,6 +24,8 @@ The response is a _json_ in the following format:
 
 There is a python configuration file for the application located at `storage_server_proj/storage_server/config.py`. Check it to configure the address of the name server to which the storage server instance will connect and other settings.
 
+There is another instance-specific config, which must be changed for each deployed instance found in `/storage_server_proj/storage_server/instance_config.py`. It contains IP and port on which the server is deployed.
+
 ### Environment variables
 
 - `DJANGO_SECRET_KEY` - secret key to be used for the application
@@ -46,8 +48,10 @@ This image is based on [vsftpd](https://hub.docker.com/r/fauria/vsftpd/) image, 
 
 The API will be available to port **80**, so this port of the container has to be mapped to some port on the host operating system.
 
+Don't forget to set the appropriate values in `/storage-server/storage_server_proj/storage_server/instance_config.py`, by mounting file with the correct values from the host filesystem, so that name server is able to connect to the storage server.
+
 Sample command to run:
 
 ```sh
-docker run -p 8000:80 -p 20:20 -p 21:21 -e "PASV_ENABLE=NO" --name storage-server sitiritis/ds-dfs-storage-server
+docker run -p 8000:80 -p 20:20 -p 21:21 -e "PASV_ENABLE=NO" -v ./storage_server_proj/storage_server/instance_config.py:/storage-server/storage_server_proj/storage_server/instance_config.py --name storage-server sitiritis/ds-dfs-storage-server
 ```

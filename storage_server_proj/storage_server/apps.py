@@ -13,10 +13,13 @@ class StorageServerConfig(AppConfig):
   def ready(self):
     if ('collectstatic' not in sys.argv):
       try:
-        pass
+        from .instance_config import SERVER_ADDR, SERVER_PORT
         r.get(
           url=f"{NAME_SERVER_ADDRESS}/connect",
-          # params={},
+          params={
+            "addr": SERVER_ADDR,
+            "port": SERVER_PORT,
+          },
         )
       except Exception as e:
         print(f"Unable to connect to the name server: {NAME_SERVER_ADDRESS}")
