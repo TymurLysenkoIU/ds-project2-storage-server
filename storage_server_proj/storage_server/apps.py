@@ -4,7 +4,7 @@ import sys
 
 import requests as r
 
-from .config import NAME_SERVER_ADDRESS
+from .config import NAME_SERVER_ADDRESS, SERVER_ADDR, SERVER_PORT
 
 
 class StorageServerConfig(AppConfig):
@@ -13,7 +13,6 @@ class StorageServerConfig(AppConfig):
   def ready(self):
     if ('collectstatic' not in sys.argv):
       try:
-        from .instance_config import SERVER_ADDR, SERVER_PORT
         r.get(
           url=f"{NAME_SERVER_ADDRESS}/connect",
           params={
